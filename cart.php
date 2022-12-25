@@ -21,6 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+<?php
+
+if (!isset($_GET['id'])) {
+	echo "<meta http-equiv='refresh' content='0;URL=?id=live'/>";
+}
+
+?>
+
 <div class="main">
 	<div class="content">
 		<div class="cartoption">
@@ -110,13 +118,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<?php
 								$vat = $sum * 0.1;
 								$gtotal = $sum + $vat;
-								echo $gtotal;    //Part27 next;
+								echo $gtotal;
 								?>
 							</td>
 						</tr>
 					</table>
 				<?php } else {
-					echo "Cart Empty! Please Shop Now.";
+					header("Location:index.php");
+					//echo "Cart Empty! Please Shop Now.";
 				} ?>
 			</div>
 			<div class="shopping">

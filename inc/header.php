@@ -9,10 +9,11 @@ spl_autoload_register(function ($class) {
     include_once "classes/" . $class . ".php";
 });
 
-$db = new Database();
-$fm = new Format();
-$pd = new Product();
-$ct = new Cart();
+$db  = new Database();
+$fm  = new Format();
+$pd  = new Product();
+$cat = new Category();
+$ct  = new Cart();
 
 
 ?>
@@ -80,7 +81,7 @@ header("Cache-Control: max-age=2592000");
                                     echo "$" . $sum . " | Qty " . $qty;
                                 } else {
                                     echo "(Empty)";
-                                }  // PART 31 Next;
+                                }
 
                                 ?>
 
