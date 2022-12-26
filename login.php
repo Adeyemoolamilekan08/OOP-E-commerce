@@ -1,32 +1,49 @@
 <?php include("inc/header.php"); ?>
+<?php
+$login =  Session::get("cuslogin");
+if ($login == true) {
+	header("Location:order.php");
+}
+?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+	$custLogin = $cmr->customerLogin($_POST);
+}
+
+?>
 
 <div class="main">
 	<div class="content">
 		<div class="login_panel">
+			<?php
+			if (isset($custLogin)) {
+				echo $custLogin;
+			}
+			?>
 			<h3>Existing Customers</h3>
 			<p>Sign in with the form below.</p>
-			<form action="hello" method="get" id="member">
-				<input name="" type="text">
-				<input name="" type="password">
+			<form action="" method="post">
+				<input name="email" placeholder="Email" type="text">
+				<input name="pass" placeholder="Password" type="password">
+				<div class="buttons">
+					<div><button class="grey" name="login">Sign In</button></div>
+				</div>
 			</form>
-			<p class="note">If you forgot your passoword just enter your email and click <a href="#">here</a></p>
-			<div class="buttons">
-				<div><button class="grey">Sign In</button></div>
-			</div>
+
 		</div>
 
 
 		<?php
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-			$cutosmerReg = $cmr->customerRegistration($_POST);
+			$customerReg = $cmr->customerRegistration($_POST);
 		}
 
 		?>
 
 		<div class="register_account">
 			<?php
-			if (isset($cutosmerReg)) {
-				echo $cutosmerReg;
+			if (isset($customerReg)) {
+				echo $customerReg;
 			}
 			?>
 			<h3>Register New Account</h3>
