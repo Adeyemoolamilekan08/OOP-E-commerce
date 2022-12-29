@@ -7,55 +7,58 @@ if ($login == false) {
 ?>
 
 <style>
-    .payment {
+    .psuccess {
         width: 500px;
         min-height: 200px;
         text-align: center;
         border: 1px solid #ddd;
         margin: 0 auto;
-        padding: 50px;
+        padding: 20px;
     }
 
-    .payment h2 {
+    .psuccess h2 {
 
         border-bottom: 1px solid #ddd;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         padding-bottom: 10px;
-
     }
 
-    .payment a {
-        background: #ff0000 none repeat scroll 0 0;
-        border-radius: 3px;
-        color: #fff;
-        font-size: 25px;
-        padding: 5px 30px;
-    }
-
-    .back a {
-        width: 160px;
-        margin: 5px auto 0;
-        padding: 7px 0;
-        text-align: center;
-        display: block;
-        background: #555;
-        border: 1px solid #333;
-        color: #fff;
-        border-radius: 3px;
-        font-size: 25px;
+    .psuccess p {
+        line-height: 25px;
+        text-align: left;
+        font-size: 18px;
     }
 </style>
 
 <div class="main">
     <div class="content">
         <div class="section group">
-            <div class="payment">
+            <div class="psuccess">
                 <h2>Success</h2>
+                <?php
+                $cmrId =  Session::get("cmrId");
+                $amount = $ct->payableAmount($cmrId);
+                if ($amount) {
+                    $sum = 0;
+                    while ($result = $amount->fetch_assoc()) {
+                        $price = $result['price'];
+                        $sum = $sum + $price;
+                    }
+                }
 
-                <p>Payment Successful</p>
+                ?>
+                <p style="color: red;">Total Payable Amount(Including Vat) : $
+                    <?php
+                    $vat = $sum * 0.1;
+                    $total = $sum + $vat;
+                    echo $total;
+                    ?>
+                </p>
+                <p>Thanks For Purchase. Receive Your Order Successfully.
+                    We will contact you ASAP with delivery details. Here is your order details....<a href="orderdetails.php">Visit Here...</a></p>
             </div>
         </div>
     </div>
 </div>
-<?php include("inc/footer.php"); // 44
+<?php include("inc/footer.php");
 ?>

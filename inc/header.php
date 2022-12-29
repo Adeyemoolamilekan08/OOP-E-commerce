@@ -132,6 +132,15 @@ header("Cache-Control: max-age=2592000");
                 ?>
 
                 <?php
+                $cmrId =  Session::get("cmrId");
+                $chkOrder = $ct->checkOrder($cmrId);
+                if ($chkOrder) { ?>
+                    <li><a href="orderdetails.php">Order</a></li>
+                <?php
+                }
+                ?>
+
+                <?php
 
                 $login =  Session::get("cuslogin");
                 if ($login == true) { ?>

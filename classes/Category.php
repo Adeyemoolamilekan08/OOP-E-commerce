@@ -78,7 +78,7 @@ class Category
 
     public function delCatById($id)
     {
-        $id = mysqli_real_escape_string($this->db->link, $id);
+        // $id = mysqli_real_escape_string($this->db->link, $id);
         $query = "DELETE FROM tbl_category WHERE catId='$id'";
         $deldata = $this->db->delete($query);
         if ($deldata) {
