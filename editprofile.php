@@ -10,7 +10,6 @@ $cmrId =  Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $Updatecmr = $cmr->customerUpdate($_POST, $cmrId);
 }
-
 ?>
 <style>
     .tblone {

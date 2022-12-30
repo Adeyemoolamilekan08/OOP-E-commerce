@@ -93,7 +93,9 @@ header("Cache-Control: max-age=2592000");
 
                 <?php
                 if (isset($_GET['cid'])) {
+                    $cmrId =  Session::get("cmrId");
                     $delData = $ct->delCustomerCart();
+                    $delComp = $pd->delCompareData($cmrId);
                     Session::destroy();
                 }
                 ?>
@@ -119,7 +121,6 @@ header("Cache-Control: max-age=2592000");
         <div class="menu">
             <ul id="dc_mega-menu-orange" class="dc_mm-orange">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a> </li>
                 <li><a href="topbrands.php">Top Brands</a></li>
 
                 <?php
@@ -146,10 +147,20 @@ header("Cache-Control: max-age=2592000");
                 if ($login == true) { ?>
 
                     <li><a href="profile.php">Profile</a> </li>
+                <?php  }  ?>
+
                 <?php
-
-                }  ?>
-
+                $getPd = $pd->getCompareData($cmrId);
+                if ($getPd) {
+                ?>
+                    <li><a href="compare.php">Compare</a> </li>
+                <?php } ?>
+                <?php
+                $getPd = $pd->getWlistData($cmrId);
+                if ($getPd) {
+                ?>
+                    <li><a href="wishlist.php">WishList</a> </li>
+                <?php } ?>
                 <li><a href="contact.php">Contact</a> </li>
                 <div class="clear"></div>
             </ul>

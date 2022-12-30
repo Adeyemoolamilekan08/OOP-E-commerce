@@ -57,23 +57,25 @@ if (isset($_GET['customerid'])) {
                                 <?php
                                 if ($result['status'] == '0') {
                                     echo "pending";
-                                } elseif ($result['status'] == '1') { ?>
-                                    <a href="?customerid=<?php echo $cmrId; ?>&price=<?php echo  $result['price']; ?>&time=<?php echo $result['date']; ?>">Shifted</a>
-                                <?php  } else {
-                                    echo "Confirm";
+                                } elseif ($result['status'] == '1') {
+                                    echo "Shifted";
+                                } else {
+                                    echo "Ok";
                                 }
                                 ?>
                             </td>
                             <?php
-                            if ($result['status'] == '2') { ?>
-                                <td><a onclick="return confirm('Are you sure to Delete!'); " href="">X</a></td>
-                            <?php } else { ?>
+                            if ($result['status'] == '1') { ?>
+                                <td> <a href="?customerid=<?php echo $cmrId; ?>&price=<?php echo  $result['price']; ?>&time=<?php echo $result['date']; ?>">Confirm</a></td>
+                            <?php } elseif ($result['status'] == '2') { ?>
+                                <td>Ok</td>
+                            <?php  } elseif ($result['status'] == '0') { ?>
                                 <td>N/A</td>
-                            <?php  }   ?>
+                            <?php }  ?>
                 </tr>
 
         <?php  }
-                    }  //13:15 
+                    }
         ?>
             </table>
         </div>
