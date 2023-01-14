@@ -1,7 +1,5 @@
 <?php include("../classes/Adminlogin.php"); ?>
-
 <?php
-
 $al = new Adminlogin();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
